@@ -40,7 +40,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
+                <configuration> <!-- In JT configuration tag and its content is missing -->
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -49,6 +49,12 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin> <!-- Added to solve an error where Maven is failing a test -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+            </plugin>
+
         </plugins>
     </build>
 
