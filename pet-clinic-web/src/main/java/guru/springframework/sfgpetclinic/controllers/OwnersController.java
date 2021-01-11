@@ -30,4 +30,9 @@ public class OwnersController {
 
     }
 
+    @RequestMapping("/find")
+    String findOwners() {
+        return "notimplemented";
+    }
+
 }

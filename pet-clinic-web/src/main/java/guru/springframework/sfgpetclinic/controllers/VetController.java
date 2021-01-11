@@ -25,4 +25,9 @@ public class VetController {
         return "vets/index";
     }
 
+    @RequestMapping("/vets.html")
+    String findVets() {
+        return "notimplemented";
+    }
+
 }
