@@ -54,5 +54,4 @@ public class SpecialitySDJpaService implements SpecialityService {
         this.specialityRepository.deleteById(id);
     }
 
-
 }
