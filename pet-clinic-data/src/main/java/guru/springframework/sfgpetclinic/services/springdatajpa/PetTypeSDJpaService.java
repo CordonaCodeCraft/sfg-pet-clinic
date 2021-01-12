@@ -54,5 +54,4 @@ public class PetTypeSDJpaService implements PetTypeService {
         this.petTypeRepository.deleteById(id);
     }
 
-
 }
