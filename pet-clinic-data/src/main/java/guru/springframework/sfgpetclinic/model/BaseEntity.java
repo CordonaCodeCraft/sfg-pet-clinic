@@ -12,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
 @Setter
+
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 
