@@ -41,20 +41,20 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadData() {
-        Specialty radiology = new Specialty();
+        Speciality radiology = new Speciality();
         radiology.setDescription("Radiology");
 
-        Specialty savedRadiology = specialtyService.save(radiology);
+        Speciality savedRadiology = specialtyService.save(radiology);
 
-        Specialty surgery = new Specialty();
+        Speciality surgery = new Speciality();
         surgery.setDescription("Surgery");
 
-        Specialty savedSurgery = specialtyService.save(surgery);
+        Speciality savedSurgery = specialtyService.save(surgery);
 
-        Specialty dentistry = new Specialty();
+        Speciality dentistry = new Speciality();
         dentistry.setDescription("Dentistry");
 
-        Specialty savedDentistry = specialtyService.save(dentistry);
+        Speciality savedDentistry = specialtyService.save(dentistry);
 
         PetType dog = new PetType();
         dog.setName("Dog");
