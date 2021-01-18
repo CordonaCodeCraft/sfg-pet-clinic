@@ -2,8 +2,6 @@ package guru.springframework.sfgpetclinic.controllers;
 
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.PetType;
-import guru.springframework.sfgpetclinic.repositories.OwnerRepository;
-import guru.springframework.sfgpetclinic.repositories.PetRepository;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
