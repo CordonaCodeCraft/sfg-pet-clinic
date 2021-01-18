@@ -3,6 +3,7 @@ package guru.springframework.sfgpetclinic.model;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -11,13 +12,25 @@ import java.util.Set;
 
 import static javax.persistence.CascadeType.ALL;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
-
-@Entity(name = "Owner")
+@Entity
 @Table(name = "owners")
 public class Owner extends Person {
+
+    @Builder
+    public Owner(Long id, String firstName, String lastName, String address, String city,
+                 String telephone, Set<Pet> pets) {
+        super(id, firstName, lastName);
+        this.address = address;
+        this.city = city;
+        this.telephone = telephone;
+
+        if(pets != null) {
+            this.pets = pets;
+        }
+    }
 
     private String address;
 
@@ -25,33 +38,12 @@ public class Owner extends Person {
 
     private String telephone;
 
-    @Builder
-    public Owner(Long id, String firstName, String lastName,
-                 String address, String city, String telephone, Set<Pet> pets) {
-        super(id, firstName, lastName);
-        this.address = address;
-        this.city = city;
-        this.telephone = telephone;
-
-        if (pets != null) {
-            this.pets = pets;
-        }
-    }
-
-    public Owner(String address, String city, String telephone, Set<Pet> pets) {
-        this.address = address;
-        this.city = city;
-        this.telephone = telephone;
-        this.pets = pets;
-    }
-
-    @OneToMany(mappedBy = "owner", cascade = ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
     public Pet getPet(String name) {
         return getPet(name, false);
     }
-
 
     public Pet getPet(String name, boolean ignoreNew) {
         name = name.toLowerCase();
