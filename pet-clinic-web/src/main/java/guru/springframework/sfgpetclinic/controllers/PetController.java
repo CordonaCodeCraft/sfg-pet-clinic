@@ -6,7 +6,6 @@ import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -28,13 +27,11 @@ public class PetController {
     private final OwnerService ownerService;
     private final PetTypeService petTypeService;
 
-    @Autowired
     public PetController(PetService petService, OwnerService ownerService, PetTypeService petTypeService) {
         this.petService = petService;
         this.ownerService = ownerService;
         this.petTypeService = petTypeService;
     }
-
 
     @ModelAttribute("types")
     public Collection<PetType> populatePetTypes() {
@@ -53,10 +50,9 @@ public class PetController {
 
     @GetMapping("/pets/new")
     public String initCreationForm(Owner owner, Model model) {
-
-        System.out.println();
         Pet pet = new Pet();
         owner.getPets().add(pet);
+        pet.setOwner(owner);
         model.addAttribute("pet", pet);
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
@@ -72,6 +68,7 @@ public class PetController {
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         } else {
             petService.save(pet);
+
             return "redirect:/owners/" + owner.getId();
         }
     }
@@ -90,7 +87,7 @@ public class PetController {
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         } else {
             owner.getPets().add(pet);
-           petService.save(pet);
+            petService.save(pet);
             return "redirect:/owners/" + owner.getId();
         }
     }
